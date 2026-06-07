@@ -1,9 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Анимации для игры */
+@keyframes explosion {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes particle {
+  0% {
+    opacity: 0.6;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-10px) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.5);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes planetRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Плавные переходы для всех элементов */
+* {
+  transition: all 0.1s ease-out;
+}
+
+/* Оптимизация для анимаций */
+.animate-smooth {
+  will-change: transform, opacity;
+}
+
+/* Улучшенные анимации для звезд */
+.star-animation {
+  animation: starFloat 3s ease-in-out infinite;
+}
+
+@keyframes starFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(180deg);
+  }
+}
+
+/* Анимация для планет */
+.planet-animation {
+  animation: planetFloat 8s ease-in-out infinite;
+}
+
+@keyframes planetFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+  }
+}
+
+/* Анимация для облаков */
+.cloud-animation {
+  animation: cloudFloat 6s ease-in-out infinite;
+}
+
+@keyframes cloudFloat {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(10px) translateY(-5px);
+  }
 }
 
 @layer utilities {
