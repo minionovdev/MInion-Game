@@ -1,6 +1,5 @@
-import { startTonChecking } from "./server"
- 
-// Запускаем проверку только на сервере
-if (typeof window === "undefined") {
-  startTonChecking()
-} 
+export * from "./BalanceModal"
+export * from "./BetControls"
+export * from "./GameArea"
+export * from "./GameButton"
+export * from "./Stats"
